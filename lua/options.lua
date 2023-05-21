@@ -16,6 +16,9 @@ vim.opt.expandtab = true
 
 vim.cmd [[ set noswapfile ]]
 
+-- paste from system clipboard
+vim.opt.clipboard:append("unnamedplus")
+
 --Line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
