@@ -38,6 +38,12 @@ local plugins = {
   },
   'windwp/nvim-autopairs',
 
+  --tabline setting
+  {
+    'akinsho/bufferline.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+
   -- rust babyyyyyyy
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',

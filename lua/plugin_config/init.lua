@@ -13,3 +13,8 @@ require("plugin_config.rust_config")
 require("plugin_config.dap_config")
 require("nvim-autopairs").setup()
 require('leap').add_default_mappings()
+require('bufferline').setup{
+  options = {
+    numbers = 'buffer_id',
+  }
+}
