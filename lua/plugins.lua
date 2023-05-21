@@ -31,6 +31,13 @@ local plugins = {
   'tpope/vim-fugitive',
   'tpope/vim-commentary',
 
+  -- ridiculously fast motion speed
+  {
+    'ggandor/leap.nvim',
+    dependencies = { {'tpope/vim-repeat'} }
+  },
+  'windwp/nvim-autopairs',
+
   -- rust babyyyyyyy
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
