@@ -18,3 +18,4 @@ require('bufferline').setup{
     numbers = 'buffer_id',
   }
 }
+require('nvim-lastplace').setup{}

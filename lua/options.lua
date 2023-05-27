@@ -1,6 +1,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.tmux_navigator_save_on_switch = true
+
 vim.opt.backspace = '2'
 vim.opt.showcmd = true
 vim.opt.laststatus = 2
@@ -17,7 +19,8 @@ vim.opt.expandtab = true
 vim.cmd [[ set noswapfile ]]
 
 -- paste from system clipboard
-vim.opt.clipboard:append("unnamedplus")
+-- harms startup speed !!!
+-- vim.opt.clipboard:append("unnamedplus")
 
 --Line numbers
 vim.wo.number = true
