@@ -25,3 +25,8 @@ vim.cmd [[ set noswapfile ]]
 --Line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+-- Set 'noexpandtab' for Makefiles
+vim.api.nvim_exec([[
+  autocmd FileType make set noexpandtab
+]], false)
