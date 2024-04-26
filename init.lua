@@ -1,4 +1,2 @@
-require("options")
-require("keymaps")
-require("plugins")
-require("plugin_config")
+require("ldd.core")
+require("ldd.lazy")
