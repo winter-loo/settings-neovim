@@ -72,4 +72,8 @@ Works best with neovim 0.9.5
 
 ## nvim-tree
 
-`a` command adds a new file or directory. Directory is a file ending with '/'
+- `a`: add a new file or directory. Directory is a file ending with '/'
+
+- `r`: rename file or directory
+
+- `ctrl+x`: open file in a split
