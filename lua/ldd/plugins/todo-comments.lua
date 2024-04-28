@@ -16,6 +16,13 @@ return {
       todo_comments.jump_prev()
     end, { desc = "Previous todo comment" })
 
-    todo_comments.setup()
+    todo_comments.setup({
+      highlight = {
+        keyword = "bg",
+        -- TODO(student): hello
+        -- TODO: world
+        pattern = [[.*<(KEYWORDS)(\s*|\(.*\)):]],
+      }
+    })
   end,
 }
