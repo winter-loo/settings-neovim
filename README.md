@@ -12,6 +12,8 @@ Works best with neovim 0.9.5 and tmux 3.3
 
 # keymaps
 
+## general
+
 |mode  |keys|function|
 |------|----|--------|
 |normal|gcc |linewise commenting|
@@ -30,10 +32,12 @@ Works best with neovim 0.9.5 and tmux 3.3
 |normal|ds{char}|delete surrounding `char` from current text object|
 |normal|cs{target}{replacement}|replace `target` char with `replacement` char in current text object|
 |normal|\<leader\>ff|find files|
+|normal|\<leader\>fo|find opened files|
 |normal|\<leader\>fr|find recent files|
 |normal|\<leader\>fs|find string|
 |normal|\<leader\>fc|find string under cursor|
 |normal|\<leader\>ft|find todos|
+|normal|\<leader\>fl|show last find|
 |normal|]t|go to next todo comment|
 |normal|[t|go to previous todo comment|
 |normal|\<leader\>xx|toggle trouble list|
@@ -56,6 +60,7 @@ Works best with neovim 0.9.5 and tmux 3.3
 |normal|gR|show definition, references|
 |normal|gd|go to definition|
 |normal|gD|go to declaration|
+|normal|\<leader\>ls|search symbol in workspace|
 |normal|\<leader\>d|show line diagnostics|
 |normal|\<leader\>D|show buffer diagnostics|
 |normal|]d|go to next diagnostic|
@@ -63,6 +68,22 @@ Works best with neovim 0.9.5 and tmux 3.3
 |normal|K|show documentation for what is under cursor|
 |normal|\<leader\>rs|restart lsp|
 |normal|\<leader\>rn|smart rename what is under cursor|
+
+## debugger
+
+|keys|function|
+|----|--------|
+|\<leader\>dc|start debug session or continue to the next breakpoint|
+|\<leader\>di|step in|
+|\<leader\>dj|step over|
+|\<leader\>do|step out|
+|\<leader\>dr|restart debug session|
+|\<leader\>dt|terminate debug session|
+|\<leader\>db|toggle breakpoint|
+|\<leader\>dv|list current frame variables|
+|\<leader\>df|list frames|
+|\<leader\>dp|list breakpoints|
+
 
 # commands
 
