@@ -7,7 +7,7 @@ return {
     -- This feature is turned on if gdb built with python support.
     dap.adapters.gdb = {
       type = "executable",
-      command = "/home/lightdb/opt/local/bin/gdb",
+      command = "gdb",
       -- `gdb -i dap` command starts the dap server
       args = { "-i", "dap" }
     }
