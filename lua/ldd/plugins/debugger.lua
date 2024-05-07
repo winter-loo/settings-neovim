@@ -14,6 +14,7 @@ return {
           if vim.fn.buflisted(b) ~= 1 and fname == "[dap-repl]" then
             -- switch to '[dap-repl]' buffer and enter 'insert' mode
             vim.api.nvim_set_current_win(w)
+	    vim.api.nvim_win_set_height(w, 10)
             vim.api.nvim_input("i")
             break
           end
