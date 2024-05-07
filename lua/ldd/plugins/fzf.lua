@@ -17,5 +17,6 @@ return {
     keymap.set("n", "<leader>fc", "<cmd>FzfLua grep_cword<cr>", { desc = "Find string under cursor in cwd" })
 
     keymap.set("n", "<leader>ls", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "search symbol in workspace" })
+    keymap.set("n", "<leader>lf", "<cmd>FzfLua lsp_finder<cr>", { desc = "find symbol under cursor" })
   end
 }
