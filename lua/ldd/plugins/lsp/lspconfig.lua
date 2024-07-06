@@ -80,6 +80,16 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    lspconfig.rust_analyzer.setup{
+      settings = {
+        ['rust-analyzer'] = {
+          diagnostics = {
+            enable = false;
+          }
+        }
+      }
+    }
+
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
       function(server_name)
