@@ -22,8 +22,54 @@ return {
       end
     end
 
+    dap.savebp = function()
+      local all_bpts = require("dap.breakpoints").get()
+      if #all_bpts == 0 then
+        return
+      end
+
+      local filename = vim.fn.stdpath("cache") .. "/gdbbreakpoints.txt"
+      local file = io.open(filename, "w")
+      if file == nil then
+        vim.notify(string.format("cannot open file: %s", filename), vim.log.levels.ERROR)
+        return
+      end
+
+      for bufnr, bpts in pairs(all_bpts) do
+        for _, bp in ipairs(bpts) do
+          file:write(vim.fn.bufname(bufnr) .. ":" .. bp.line .. "\n")
+        end
+      end
+      file:close()
+      vim.notify(string.format("breakpoints saved to file %s", filename), vim.log.levels.INFO)
+    end
+
+    dap.loadbp = function()
+      local filename = vim.fn.stdpath("cache") .. "/gdbbreakpoints.txt"
+      local file = io.open(filename, "r")
+      if file == nil then
+        vim.notify(string.format("cannot open file: %s", filename), vim.log.levels.ERROR)
+        return
+      end
+
+      -- breakpt = require("dap.breakpoints")
+      for line in file:lines() do
+        -- local bufnr = 0
+        -- local lnum = 1
+        local m = string.gmatch(line, "[^:]+")
+        local bpfile = m()
+        local lnum = m()
+        print("breakpoint at line " .. lnum .. " of file " .. bpfile)
+        -- breakpt.set({}, bufnr, lnum)
+      end
+
+      file:close()
+    end
+
     local keymap = vim.keymap -- for conciseness
 
+    keymap.set("n", "<leader>dbs", "<cmd>lua require'dap'.savebp()<cr>", { desc = "save breakpoints" })
+    keymap.set("n", "<leader>dbl", "<cmd>lua require'dap'.loadbp()<cr>", { desc = "load breakpoints" })
     keymap.set("n", "<leader>dc", "<cmd>DapContinue<cr>", { desc = "continue to the next breakpoint" })
     keymap.set("n", "<leader>dt", "<cmd>DapTerminate<cr>", { desc = "list frames" })
     keymap.set("n", "<leader>di", "<cmd>DapStepInto<cr>", { desc = "step into the function" })
@@ -51,7 +97,54 @@ return {
           type = "gdb",
           request = "launch",
           program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          args = function()
+            return vim.fn.input("args: ")
+          end,
+          stopAtBeginningOfMainSubprogram = false,
+      },
+      {
+          name = "attach",
+          type = "gdb",
+          request = "attach",
+          pid = require("dap.utils").pick_process,
+          stopAtBeginningOfMainSubprogram = false,
+      },
+    }
+
+    dap.configurations.cpp = {
+      {
+          name = "launch",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          args = function()
+            return vim.fn.input("args: ")
+          end,
+          stopAtBeginningOfMainSubprogram = false,
+      },
+      {
+          name = "attach",
+          type = "gdb",
+          request = "attach",
+          pid = require("dap.utils").pick_process,
+          stopAtBeginningOfMainSubprogram = false,
+      },
+    }
+
+    dap.configurations.rust = {
+      {
+          name = "launch",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          args = function()
+            return vim.fn.input("args: ")
           end,
           stopAtBeginningOfMainSubprogram = false,
       },
