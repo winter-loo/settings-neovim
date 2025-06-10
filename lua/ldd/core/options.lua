@@ -39,3 +39,5 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.swapfile = false
 
 opt.colorcolumn =  "80,100,120"
+
+opt.showmode = false

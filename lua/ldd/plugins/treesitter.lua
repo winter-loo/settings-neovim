@@ -23,12 +23,14 @@ return {
       -- ensure these language parsers are installed
       ensure_installed = {
         "c",
+        "lua",
+        "rust",
       },
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
+          init_selection = "<enter>",
+          node_incremental = "<enter>",
           scope_incremental = false,
           node_decremental = "<bs>",
         },

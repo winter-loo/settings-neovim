@@ -14,7 +14,7 @@ return {
           if vim.fn.buflisted(b) ~= 1 and fname == "[dap-repl]" then
             -- switch to '[dap-repl]' buffer and enter 'insert' mode
             vim.api.nvim_set_current_win(w)
-	    vim.api.nvim_win_set_height(w, 10)
+            vim.api.nvim_win_set_height(w, 10)
             vim.api.nvim_input("i")
             break
           end
@@ -93,67 +93,67 @@ return {
 
     dap.configurations.c = {
       {
-          name = "launch",
-          type = "gdb",
-          request = "launch",
-          program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          args = function()
-            return vim.fn.input("args: ")
-          end,
-          stopAtBeginningOfMainSubprogram = false,
+        name = "launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        args = function()
+          return vim.fn.input("args: ")
+        end,
+        stopAtBeginningOfMainSubprogram = false,
       },
       {
-          name = "attach",
-          type = "gdb",
-          request = "attach",
-          pid = require("dap.utils").pick_process,
-          stopAtBeginningOfMainSubprogram = false,
+        name = "attach",
+        type = "gdb",
+        request = "attach",
+        pid = require("dap.utils").pick_process,
+        stopAtBeginningOfMainSubprogram = false,
       },
     }
 
     dap.configurations.cpp = {
       {
-          name = "launch",
-          type = "gdb",
-          request = "launch",
-          program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          args = function()
-            return vim.fn.input("args: ")
-          end,
-          stopAtBeginningOfMainSubprogram = false,
+        name = "launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        args = function()
+          return vim.fn.input("args: ")
+        end,
+        stopAtBeginningOfMainSubprogram = false,
       },
       {
-          name = "attach",
-          type = "gdb",
-          request = "attach",
-          pid = require("dap.utils").pick_process,
-          stopAtBeginningOfMainSubprogram = false,
+        name = "attach",
+        type = "gdb",
+        request = "attach",
+        pid = require("dap.utils").pick_process,
+        stopAtBeginningOfMainSubprogram = false,
       },
     }
 
     dap.configurations.rust = {
       {
-          name = "launch",
-          type = "gdb",
-          request = "launch",
-          program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          args = function()
-            return vim.fn.input("args: ")
-          end,
-          stopAtBeginningOfMainSubprogram = false,
+        name = "launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        args = function()
+          return vim.fn.input("args: ")
+        end,
+        stopAtBeginningOfMainSubprogram = false,
       },
       {
-          name = "attach",
-          type = "gdb",
-          request = "attach",
-          pid = require("dap.utils").pick_process,
-          stopAtBeginningOfMainSubprogram = false,
+        name = "attach",
+        type = "gdb",
+        request = "attach",
+        pid = require("dap.utils").pick_process,
+        stopAtBeginningOfMainSubprogram = false,
       },
     }
   end,
