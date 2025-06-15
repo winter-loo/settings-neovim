@@ -2,7 +2,9 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    'saghen/blink.cmp',
+    -- 'saghen/blink.cmp',
+    { "antosha417/nvim-lsp-file-operations", config = true },
+    { "folke/neodev.nvim", opts = {} },
   },
   config = function()
     -- import lspconfig plugin
@@ -67,8 +69,8 @@ return {
       end,
     })
 
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
-    lspconfig['lua_ls'].setup({ capabilities = capabilities })
+    -- local capabilities = require('blink.cmp').get_lsp_capabilities()
+    local capabilities = {}
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
@@ -80,8 +82,38 @@ return {
 
     vim.lsp.config('rust_analyzer', {
       settings = {
-        ['rust-analyzer'] = {},
+        ['rust-analyzer'] = {
+          diagnostics = {
+            enable = true;
+          }
+        }
       }
     })
+
+    -- mason_lspconfig.setup_handlers({
+    --   -- default handler for installed servers
+    --   function(server_name)
+    --     lspconfig[server_name].setup({
+    --       capabilities = capabilities,
+    --     })
+    --   end,
+    --   ["lua_ls"] = function()
+    --     -- configure lua server (with special settings)
+    --     lspconfig["lua_ls"].setup({
+    --       capabilities = capabilities,
+    --       settings = {
+    --         Lua = {
+    --           -- make the language server recognize "vim" global
+    --           diagnostics = {
+    --             globals = { "vim" },
+    --           },
+    --           completion = {
+    --             callSnippet = "Replace",
+    --           },
+    --         },
+    --       },
+    --     })
+    --   end,
+    -- })
   end,
 }
