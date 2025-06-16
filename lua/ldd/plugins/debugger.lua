@@ -1,5 +1,8 @@
 return {
   "mfussenegger/nvim-dap",
+  dependencies = {
+    "leoluz/nvim-dap-go", -- Go-specific config helper
+  },
   config = function()
     local dap = require("dap")
 
@@ -81,6 +84,8 @@ return {
     keymap.set("n", "<leader>dv", "<cmd>FzfLua dap_variables<cr>", { desc = "list current frame variables" })
     keymap.set("n", "<leader>df", "<cmd>FzfLua dap_frames<cr>", { desc = "list frames" })
     keymap.set("n", "<leader>dp", "<cmd>FzfLua dap_breakpoints<cr>", { desc = "list breakpoints" })
+    -- 'h' -> Here
+    keymap.set("n", "<leader>dh", "<cmd>lua require'dap'.run_to_cursor()<cr>", { desc = "run to current cursor position" })
 
     -- As of gdb 14.1, gdb has itw own Debugger Adapter Protocol.
     -- This feature is turned on if gdb built with python support.
@@ -156,5 +161,7 @@ return {
         stopAtBeginningOfMainSubprogram = false,
       },
     }
+
+    require("dap-go").setup()
   end,
 }
