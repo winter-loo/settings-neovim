@@ -1,16 +1,41 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    -- 'saghen/blink.cmp',
-    { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
-  },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
 
-    lspconfig.clangd.setup{}
+    vim.lsp.config['clangd'] = {
+
+    }
+
+    -- see :help lsp
+    vim.lsp.config['luals'] = {
+      -- Command and arguments to start the server.
+      cmd = { 'lua-language-server' },
+
+      -- Filetypes to automatically attach to.
+      filetypes = { 'lua' },
+
+      -- Sets the "root directory" to the parent directory of the file in the
+      -- current buffer that contains either a ".luarc.json" or a
+      -- ".luarc.jsonc" file. Files that share a root directory will reuse
+      -- the connection to the same LSP server.
+      -- Nested lists indicate equal priority, see |vim.lsp.Config|.
+      root_markers = { { '.luarc.json', '.luarc.jsonc' }, '.git' },
+
+      -- Specific settings to send to the server. The schema for this is
+      -- defined by the server. For example the schema for lua-language-server
+      -- can be found here https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
+      settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT',
+          }
+        }
+      }
+    }
+
+    vim.lsp.enable('luals')
+    vim.lsp.enable('clangd')
 
     local keymap = vim.keymap -- for conciseness
 
@@ -68,52 +93,5 @@ return {
         keymap.set("n", "<leader>iH", ":lua vim.lsp.inlay_hint.enable(false, { 0 })<CR>", opts)
       end,
     })
-
-    -- local capabilities = require('blink.cmp').get_lsp_capabilities()
-    local capabilities = {}
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
-    vim.lsp.config('rust_analyzer', {
-      settings = {
-        ['rust-analyzer'] = {
-          diagnostics = {
-            enable = true;
-          }
-        }
-      }
-    })
-
-    -- mason_lspconfig.setup_handlers({
-    --   -- default handler for installed servers
-    --   function(server_name)
-    --     lspconfig[server_name].setup({
-    --       capabilities = capabilities,
-    --     })
-    --   end,
-    --   ["lua_ls"] = function()
-    --     -- configure lua server (with special settings)
-    --     lspconfig["lua_ls"].setup({
-    --       capabilities = capabilities,
-    --       settings = {
-    --         Lua = {
-    --           -- make the language server recognize "vim" global
-    --           diagnostics = {
-    --             globals = { "vim" },
-    --           },
-    --           completion = {
-    --             callSnippet = "Replace",
-    --           },
-    --         },
-    --       },
-    --     })
-    --   end,
-    -- })
   end,
 }

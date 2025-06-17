@@ -6,6 +6,24 @@ return {
   config = function()
     local dap = require("dap")
 
+    local keymap = vim.keymap -- for conciseness
+
+    keymap.set("n", "<leader>dbs", "<cmd>lua require'dap'.savebp()<cr>", { desc = "save breakpoints" })
+    keymap.set("n", "<leader>dbl", "<cmd>lua require'dap'.loadbp()<cr>", { desc = "load breakpoints" })
+    keymap.set("n", "<leader>dc", "<cmd>DapContinue<cr>", { desc = "continue to the next breakpoint" })
+    keymap.set("n", "<leader>dT", "<cmd>DapTerminate<cr>", { desc = "list frames" })
+    keymap.set("n", "<leader>dj", "<cmd>DapStepInto<cr>", { desc = "step into the function" })
+    keymap.set("n", "<leader>dl", "<cmd>DapStepOver<cr>", { desc = "step over the function" })
+    keymap.set("n", "<leader>dk", "<cmd>DapStepOut<cr>", { desc = "step out of the function" })
+    keymap.set("n", "<leader>de", "<cmd>DapToggleRepl<cr>:lua require'dap'.dapcli()<cr>", {desc = "toggle dap interactive command line" })
+    keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.restart()<cr>", { desc = "step out of the function" })
+    keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "toggle breakpoint at current line" })
+    keymap.set("n", "<leader>dv", "<cmd>FzfLua dap_variables<cr>", { desc = "list current frame variables" })
+    keymap.set("n", "<leader>df", "<cmd>FzfLua dap_frames<cr>", { desc = "list frames" })
+    keymap.set("n", "<leader>dp", "<cmd>FzfLua dap_breakpoints<cr>", { desc = "list breakpoints" })
+    -- 'h' -> Here
+    keymap.set("n", "<leader>dh", "<cmd>lua require'dap'.run_to_cursor()<cr>", { desc = "run to current cursor position" })
+
     dap.dapcli = function()
       local tabh = vim.api.nvim_win_get_tabpage(0)
       for _, w in ipairs(vim.api.nvim_tabpage_list_wins(tabh)) do
@@ -69,24 +87,6 @@ return {
       file:close()
     end
 
-    local keymap = vim.keymap -- for conciseness
-
-    keymap.set("n", "<leader>dbs", "<cmd>lua require'dap'.savebp()<cr>", { desc = "save breakpoints" })
-    keymap.set("n", "<leader>dbl", "<cmd>lua require'dap'.loadbp()<cr>", { desc = "load breakpoints" })
-    keymap.set("n", "<leader>dc", "<cmd>DapContinue<cr>", { desc = "continue to the next breakpoint" })
-    keymap.set("n", "<leader>dt", "<cmd>DapTerminate<cr>", { desc = "list frames" })
-    keymap.set("n", "<leader>dj", "<cmd>DapStepInto<cr>", { desc = "step into the function" })
-    keymap.set("n", "<leader>dl", "<cmd>DapStepOver<cr>", { desc = "step over the function" })
-    keymap.set("n", "<leader>dk", "<cmd>DapStepOut<cr>", { desc = "step out of the function" })
-    keymap.set("n", "<leader>de", "<cmd>DapToggleRepl<cr>:lua require'dap'.dapcli()<cr>", {desc = "toggle dap interactive command line" })
-    keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.restart()<cr>", { desc = "step out of the function" })
-    keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "toggle breakpoint at current line" })
-    keymap.set("n", "<leader>dv", "<cmd>FzfLua dap_variables<cr>", { desc = "list current frame variables" })
-    keymap.set("n", "<leader>df", "<cmd>FzfLua dap_frames<cr>", { desc = "list frames" })
-    keymap.set("n", "<leader>dp", "<cmd>FzfLua dap_breakpoints<cr>", { desc = "list breakpoints" })
-    -- 'h' -> Here
-    keymap.set("n", "<leader>dh", "<cmd>lua require'dap'.run_to_cursor()<cr>", { desc = "run to current cursor position" })
-
     -- As of gdb 14.1, gdb has itw own Debugger Adapter Protocol.
     -- This feature is turned on if gdb built with python support.
     dap.adapters.gdb = {
@@ -119,28 +119,6 @@ return {
     }
 
     dap.configurations.cpp = {
-      {
-        name = "launch",
-        type = "gdb",
-        request = "launch",
-        program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        args = function()
-          return vim.fn.input("args: ")
-        end,
-        stopAtBeginningOfMainSubprogram = false,
-      },
-      {
-        name = "attach",
-        type = "gdb",
-        request = "attach",
-        pid = require("dap.utils").pick_process,
-        stopAtBeginningOfMainSubprogram = false,
-      },
-    }
-
-    dap.configurations.rust = {
       {
         name = "launch",
         type = "gdb",
