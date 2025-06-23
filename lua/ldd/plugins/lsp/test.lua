@@ -4,12 +4,14 @@ return {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter"
+    "nvim-treesitter/nvim-treesitter",
+    { "fredrikaverpil/neotest-golang", version = "*" },
   },
   config = function()
     require("neotest").setup({
       adapters = {
-        require('rustaceanvim.neotest')
+        require('rustaceanvim.neotest'),
+        require("neotest-golang")({})
       },
     })
   end,
@@ -35,8 +37,8 @@ return {
 	vim.keymap.set(
 		"n",
 		"<leader>tf",
-		"<cmd>TestFile<CR>",
-		{ desc = "lua neotest=require('neotest') neotest.output_panel.clear() neotest.run.run(vim.fn.expand('%'))" }
+		"<cmd>lua neotest=require('neotest') neotest.output_panel.clear() neotest.run.run(vim.fn.expand('%'))<CR>",
+		{ desc = "run tests in file" }
 	),
 	vim.keymap.set(
 		"n",

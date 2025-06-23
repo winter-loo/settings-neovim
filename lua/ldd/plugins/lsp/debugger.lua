@@ -8,10 +8,12 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
+    vim.fn.sign_define('DapStopped', { text = '⏩', texthl='', linehl='', numhl=''})
+
     keymap.set("n", "<leader>dbs", "<cmd>lua require'dap'.savebp()<cr>", { desc = "save breakpoints" })
     keymap.set("n", "<leader>dbl", "<cmd>lua require'dap'.loadbp()<cr>", { desc = "load breakpoints" })
     keymap.set("n", "<leader>dc", "<cmd>DapContinue<cr>", { desc = "continue to the next breakpoint" })
-    keymap.set("n", "<leader>dT", "<cmd>DapTerminate<cr>", { desc = "list frames" })
+    keymap.set("n", "<leader>dT", "<cmd>DapTerminate<cr>", { desc = "terminate debug session" })
     keymap.set("n", "<leader>dj", "<cmd>DapStepInto<cr>", { desc = "step into the function" })
     keymap.set("n", "<leader>dl", "<cmd>DapStepOver<cr>", { desc = "step over the function" })
     keymap.set("n", "<leader>dk", "<cmd>DapStepOut<cr>", { desc = "step out of the function" })
