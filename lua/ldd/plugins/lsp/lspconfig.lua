@@ -2,7 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-
     vim.lsp.config['clangd'] = {
 
     }
@@ -56,8 +55,9 @@ return {
         opts.desc = "Show LSP definitions"
         keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts) -- show lsp definitions
 
-        opts.desc = "Show LSP implementations"
-        keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts) -- show lsp implementations
+        -- opts.desc = "Show LSP implementations"
+        -- <gi> is a built-in keymap for 'goto insert'
+        -- keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts) -- show lsp implementations
 
         opts.desc = "Show LSP type definitions"
         keymap.set("n", "gt", "<cmd>FzfLua lsp_type_definitions<CR>", opts) -- show lsp type definitions
@@ -69,10 +69,10 @@ return {
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
         opts.desc = "Show buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>FzfLua diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+        keymap.set("n", "<leader>D", "<cmd>FzfLua lsp_document_diagnostics<CR>", opts) -- show  diagnostics for file
 
-        opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+        -- opts.desc = "Show line diagnostics"
+        -- keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
         opts.desc = "Go to previous diagnostic"
         keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
@@ -87,10 +87,8 @@ return {
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
         opts.desc = "enable inlay hint"
-        keymap.set("n", "<leader>ih", ":lua vim.lsp.inlay_hint.enable(true, { 0 })<CR>", opts)
-
-        opts.desc = "disable inlay hint"
-        keymap.set("n", "<leader>iH", ":lua vim.lsp.inlay_hint.enable(false, { 0 })<CR>", opts)
+        keymap.set("n", "<leader>ih",
+          ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({0}), {0})<CR>", opts)
       end,
     })
   end,
