@@ -64,6 +64,20 @@ return {
 
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+        keymap.set("n", "<leader>cp", function()
+          local ok = pcall(vim.cmd, "/^\\s\\+print")
+          if ok then
+            vim.cmd("norm V/;")
+            vim.cmd("norm gc$")
+          end
+        end, { desc = "quickly comment the print statement" })
+        keymap.set("n", "<leader>cP", function()
+          local ok = pcall(vim.cmd, "/^\\s\\+\\/\\/ print")
+          if ok then
+            vim.cmd("norm V/;")
+            vim.cmd("norm gc$")
+          end
+        end, { desc = "quickly uncomment the print statement" })
 
         opts.desc = "Smart rename"
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
