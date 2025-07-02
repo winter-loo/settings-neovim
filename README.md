@@ -98,3 +98,30 @@ Works best with neovim 0.9.5 and tmux 3.3
 - `r`: rename file or directory
 
 - `ctrl+x`: open file in a split
+
+
+# Steps to transfer neovim from one Linux machine to another
+
+1. backup and remove your nvim configuration
+
+```bash
+tar czf nvim-backup.tar.gz \
+  ~/.config/nvim \
+  ~/.local/share/nvim
+
+rm -rf ~/.config/nvim ~/.local/share/nvim
+```
+
+2. go with this neovim
+
+```bash
+tar xzf plugins.tar.gz -C ~
+```
+
+## how to create the plugins.tar.gz
+
+```bash
+cd $HOME
+tar czf plugins.tar.gz .config/nvim .local/share/nvim
+```
+
