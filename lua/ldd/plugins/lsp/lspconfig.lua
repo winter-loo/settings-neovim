@@ -15,6 +15,9 @@ return {
         --   Add: [-xc++, -Wall]   # treat all files as C++, enable more warnings
         --   Compiler: /data/ludd50155/alt/gcc-10.5.0/bin/g++
         -- ```
+        --
+        -- TIPS: you could have .clangd file in your project root and add some
+        -- include directories or compilation flags in it.
         'clangd',
         '--clang-tidy',
         '--background-index',
