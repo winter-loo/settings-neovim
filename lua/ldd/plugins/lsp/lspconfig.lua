@@ -2,9 +2,26 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    vim.lsp.config['clangd'] = {
-
+    vim.lsp.config.clangd = {
+      cmd = {
+        -- If you have a custom installed clangd, you may need set
+        -- your clangd full path.
+        --
+        -- And if you build clangd from source using custom installed g++,
+        -- you may need set your g++ full path in ~/.config/clangd/config.yaml
+        -- Example.
+        -- ```config.yaml
+        -- CompileFlags:
+        --   Add: [-xc++, -Wall]   # treat all files as C++, enable more warnings
+        --   Compiler: /data/ludd50155/alt/gcc-10.5.0/bin/g++
+        -- ```
+        'clangd',
+        '--clang-tidy',
+        '--background-index',
+        '--offset-encoding=utf-8',
+      },
     }
+    vim.lsp.enable('clangd')
 
     -- see :help lsp
     vim.lsp.config['luals'] = {
@@ -34,7 +51,6 @@ return {
     }
 
     vim.lsp.enable('luals')
-    vim.lsp.enable('clangd')
 
     local keymap = vim.keymap -- for conciseness
 
