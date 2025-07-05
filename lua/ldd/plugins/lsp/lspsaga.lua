@@ -1,6 +1,9 @@
 return {
   "nvimdev/lspsaga.nvim",
   config = function()
+    vim.api.nvim_set_hl(0, "WinBar", {
+      bg = "#44475a", -- Dracula selection gray
+    })
     require('lspsaga').setup({
       lightbulb = {
         enable = false,
