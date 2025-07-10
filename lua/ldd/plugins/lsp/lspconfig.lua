@@ -122,6 +122,9 @@ return {
         opts.desc = "enable inlay hint"
         keymap.set("n", "<leader>ih",
           ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({0}), {0})<CR>", opts)
+
+        opts.desc = "show lsp symbols in this file"
+        keymap.set("n", "<leader>ll", "<cmd>FzfLua lsp_document_symbols<CR>", opts)
       end,
     })
   end,
