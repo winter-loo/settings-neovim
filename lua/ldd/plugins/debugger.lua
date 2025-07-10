@@ -172,9 +172,10 @@ return {
 			},
 			{ "<leader>dc", dap.continue, desc = "continue to the next breakpoint" },
 			{ "<leader>dT", dap.terminate, desc = "terminate debug session" },
-			{ "<leader>dj", dap.step_into, desc = "step into the function" },
-			{ "<leader>dl", dap.step_over, desc = "step over the function" },
-			{ "<leader>dk", dap.step_out, desc = "step out of the function" },
+			{ "<F9>", dap.step_into, desc = "step into the function" },
+			{ "<F10>", dap.step_over, desc = "step over the function" },
+			{ "<F8>", dap.step_out, desc = "step out of the function" },
+			{ "<leader>dh", dap.run_to_cursor, desc = "run to current cursor position" },
 			{ "<leader>drl", dap.run_last, desc = "Run Last" },
 			{
 				"<leader>de",
@@ -184,8 +185,7 @@ return {
 				end,
 				desc = "toggle dap interactive command line",
 			},
-			{ "<leader>dr", dap.restart, desc = "step out of the function" },
-			{ "<leader>dh", dap.run_to_cursor, desc = "run to current cursor position" },
+			{ "<leader>dr", dap.restart, desc = "restart the debug session" },
 			{
 				"<leader>dv",
 				function()
