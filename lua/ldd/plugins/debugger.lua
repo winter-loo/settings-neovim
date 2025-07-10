@@ -14,7 +14,7 @@ return {
 
 		vim.fn.sign_define(
 			"DapStopped",
-			{ text = "▶", texthl = "DiagnosticError", linehl = "DiagnosticError", numhl = "" }
+			{ text = "⇒", texthl = "DiagnosticError", linehl = "DiagnosticError", numhl = "" }
 		)
 		vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticError", linehl = "", numhl = "" })
 		vim.fn.sign_define(
