@@ -10,8 +10,6 @@ return {
 	config = function()
 		local dap = require("dap")
 
-		local keymap = vim.keymap -- for conciseness
-
 		vim.fn.sign_define(
 			"DapStopped",
 			{ text = "⇒", texthl = "DiagnosticError", linehl = "DiagnosticError", numhl = "" }
@@ -22,6 +20,13 @@ return {
 			{ text = "◐", texthl = "DiagnosticError", linehl = "", numhl = "" }
 		)
 		vim.fn.sign_define("DapLogPoint", { text = "○", texthl = "DiagnosticError" })
+
+		dap.listeners.before["event_initialized"]["my_dap_config"] = function(session, body)
+			local keymap = vim.keymap
+			keymap.set("n", "+", dap.up, { desc = "go up stack frame" })
+			keymap.set("n", "-", dap.down, { desc = "go down stack frame" })
+			keymap.set("n", "_", dap.focus_frame, { desc = "go to current stack frame" })
+		end
 
 		-- As of gdb 14.1, gdb has itw own Debugger Adapter Protocol.
 		-- This feature is turned on if gdb built with python support.
@@ -170,11 +175,10 @@ return {
 				end,
 				desc = "Conditional Breakpoint",
 			},
-			{ "<leader>dc", dap.continue, desc = "continue to the next breakpoint" },
-			{ "<leader>dT", dap.terminate, desc = "terminate debug session" },
+			{ "<F7>", dap.continue, desc = "continue to the next breakpoint" },
+			{ "<F8>", dap.step_out, desc = "step out of the function" },
 			{ "<F9>", dap.step_into, desc = "step into the function" },
 			{ "<F10>", dap.step_over, desc = "step over the function" },
-			{ "<F8>", dap.step_out, desc = "step out of the function" },
 			{ "<leader>dh", dap.run_to_cursor, desc = "run to current cursor position" },
 			{ "<leader>drl", dap.run_last, desc = "Run Last" },
 			{
@@ -185,6 +189,7 @@ return {
 				end,
 				desc = "toggle dap interactive command line",
 			},
+			{ "<leader>dT", dap.terminate, desc = "terminate debug session" },
 			{ "<leader>dr", dap.restart, desc = "restart the debug session" },
 			{
 				"<leader>dv",
