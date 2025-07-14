@@ -41,3 +41,5 @@ opt.swapfile = false
 opt.colorcolumn =  "80,100,120"
 
 opt.showmode = false
+opt.foldmethod = "indent"
+opt.foldlevel = 3
