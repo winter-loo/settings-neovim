@@ -74,9 +74,9 @@ return {
         opts.desc = "Show LSP definitions"
         keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts) -- show lsp definitions
 
-        -- opts.desc = "Show LSP implementations"
         -- <gi> is a built-in keymap for 'goto insert'
-        -- keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts) -- show lsp implementations
+        opts.desc = "Show LSP implementations"
+        keymap.set("n", "gI", "<cmd>FzfLua lsp_implementations<CR>", opts) -- show lsp implementations
 
         opts.desc = "Show LSP type definitions"
         keymap.set("n", "gt", "<cmd>FzfLua lsp_type_definitions<CR>", opts) -- show lsp type definitions
