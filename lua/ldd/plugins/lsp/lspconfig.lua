@@ -2,58 +2,10 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    vim.lsp.config.clangd = {
-      cmd = {
-        -- If you have a custom installed clangd, you may need set
-        -- your clangd full path.
-        --
-        -- And if you build clangd from source using custom installed g++,
-        -- you may need set your g++ full path in ~/.config/clangd/config.yaml
-        -- Example.
-        -- ```config.yaml
-        -- CompileFlags:
-        --   Add: [-xc++, -Wall]   # treat all files as C++, enable more warnings
-        --   Compiler: /data/ludd50155/alt/gcc-10.5.0/bin/g++
-        -- ```
-        --
-        -- TIPS: you could have .clangd file in your project root and add some
-        -- include directories or compilation flags in it.
-        'clangd',
-        '--clang-tidy',
-        '--background-index',
-        '--offset-encoding=utf-8',
-      },
-    }
-    vim.lsp.enable('clangd')
-
-    -- see :help lsp
-    vim.lsp.config['luals'] = {
-      -- Command and arguments to start the server.
-      cmd = { 'lua-language-server' },
-
-      -- Filetypes to automatically attach to.
-      filetypes = { 'lua' },
-
-      -- Sets the "root directory" to the parent directory of the file in the
-      -- current buffer that contains either a ".luarc.json" or a
-      -- ".luarc.jsonc" file. Files that share a root directory will reuse
-      -- the connection to the same LSP server.
-      -- Nested lists indicate equal priority, see |vim.lsp.Config|.
-      root_markers = { { '.luarc.json', '.luarc.jsonc' }, '.git' },
-
-      -- Specific settings to send to the server. The schema for this is
-      -- defined by the server. For example the schema for lua-language-server
-      -- can be found here https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT',
-          }
-        }
-      }
-    }
-
-    vim.lsp.enable('luals')
+    -- will search configuration in 'lsp/cpp.lua'
+    vim.lsp.enable('cpp')
+    -- will search configuration in 'lsp/lua.lua'
+    vim.lsp.enable('lua')
 
     local keymap = vim.keymap -- for conciseness
 
