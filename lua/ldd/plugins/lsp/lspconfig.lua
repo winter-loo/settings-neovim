@@ -7,6 +7,10 @@ return {
     -- will search configuration in 'lsp/lua.lua'
     vim.lsp.enable('lua')
 
+    -- for web development
+    -- syntax highlight: `:TSInstall html`
+    vim.lsp.enable({'html', 'cssls', 'denols'})
+
     local keymap = vim.keymap -- for conciseness
 
     vim.api.nvim_create_autocmd("LspAttach", {
