@@ -6,9 +6,22 @@ return {
 	dependencies = {
 		"leoluz/nvim-dap-go", -- Go-specific config helper
 		"ibhagwan/fzf-lua",
+    "theHamsta/nvim-dap-virtual-text",
+    "igorlfs/nvim-dap-view",
 	},
 	config = function()
 		local dap = require("dap")
+    require("nvim-dap-virtual-text").setup()
+
+    local dapview = require("dap-view")
+
+    dapview.setup({
+      auto_toggle = true,
+      winbar = {
+        sections = { "watches", "scopes", "exceptions", "breakpoints", "threads", "repl", "console" },
+      },
+      switchbuf = "usetab",
+    })
 
 		vim.fn.sign_define(
 			"DapStopped",
