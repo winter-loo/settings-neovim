@@ -9,7 +9,9 @@ return {
 
     -- for web development
     -- syntax highlight: `:TSInstall html`
-    vim.lsp.enable({'html', 'cssls', 'denols'})
+    -- syntax highlight: `:TSInstall typescript`
+    -- vtsls for typescript and javascript
+    vim.lsp.enable({'html', 'cssls', 'vtsls'})
 
     -- golang
     vim.lsp.enable('gopls')
