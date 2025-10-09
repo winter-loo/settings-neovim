@@ -10,8 +10,9 @@ return {
     -- for web development
     -- syntax highlight: `:TSInstall html`
     -- syntax highlight: `:TSInstall typescript`
+    -- syntax highlight: `:TSInstall svelte`
     -- vtsls for typescript and javascript
-    vim.lsp.enable({'html', 'cssls', 'vtsls'})
+    vim.lsp.enable({'html', 'cssls', 'vtsls', 'svelte'})
 
     -- golang
     vim.lsp.enable('gopls')
@@ -38,9 +39,6 @@ return {
         -- <gi> is a built-in keymap for 'goto insert'
         opts.desc = "Show LSP implementations"
         keymap.set("n", "gI", "<cmd>FzfLua lsp_implementations<CR>", opts) -- show lsp implementations
-
-        opts.desc = "Show LSP type definitions"
-        keymap.set("n", "gt", "<cmd>FzfLua lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
