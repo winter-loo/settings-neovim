@@ -5,6 +5,42 @@ Thanks to:
 
 Works best with neovim 0.9.5 and tmux 3.3
 
+# package manager
+
+install [brew](https://brew.sh/)
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+
+# tmux
+
+see [.tmux.conf](./.tmux.conf)
+
+# fish
+
+```bash
+brew install fish
+fish
+```
+
+configure for [awesome-fish](https://github.com/jorgebucaran/awsm.fish)
+
+```fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install IlanCosman/tide@v6
+```
+
+# tools
+
+- lazygit
+
+```fish
+brew install lazygit
+```
+
+
 # prerequisites
 
 * fzf
