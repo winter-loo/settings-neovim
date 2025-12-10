@@ -34,10 +34,17 @@ fisher install IlanCosman/tide@v6
 
 # tools
 
-- lazygit
-
 ```fish
 brew install lazygit fzf ripgrep
+```
+
+configuration for **lazygit**:
+
+```yml
+keybinding:
+  commits:
+    moveDownCommit: "J"
+    moveUpCommit: "K"
 ```
 
 
