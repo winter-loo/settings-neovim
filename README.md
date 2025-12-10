@@ -40,7 +40,7 @@ brew install lazygit fzf ripgrep
 
 configuration for **lazygit**:
 
-```yml
+```~/.config/lazygit/config.yml
 keybinding:
   commits:
     moveDownCommit: "J"
