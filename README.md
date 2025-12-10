@@ -37,14 +37,9 @@ fisher install IlanCosman/tide@v6
 - lazygit
 
 ```fish
-brew install lazygit
+brew install lazygit fzf ripgrep
 ```
 
-
-# prerequisites
-
-* fzf
-* ripgrep
 
 # keymaps
 
